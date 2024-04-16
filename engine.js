@@ -26,6 +26,7 @@ class Engine {
     gotoScene(sceneClass, data) {
         this.scene = new sceneClass(this);
         this.scene.create(data);
+        this.scene.update(data);
     }
 
     addChoice(action, data) {
@@ -37,6 +38,7 @@ class Engine {
             }
             this.scene.handleChoice(data);
         }
+        return button;
     }
 
     setTitle(title) {

@@ -1,58 +1,230 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "A Locked Room in The Middle of Nowhere",
+    "Credits": "Created by Kellum Inglin (kinglin@ucsc.edu).",
+    "InitialScene": "North",
+    "InitialLocation": "North",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "North": {
+            "InitialBody": "You wake up facing the north wall of a room.",
+            "Body": "You are facing the north wall of the room.",
+            "Open": "A secret passage opens up into a dark hallway.",
+            "Closed": "It appears to be an ordinary wall.",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
-                }
-            ]
-        },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Look west",
+                    "Target": "West",
+                    "Scene": "West"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
-            ]
-        },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Look south",
+                    "Target": "South",
+                    "Scene": "Location"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
+                    "Text": "Look east",
+                    "Target": "East",
+                    "Scene": "East"
                 }
-            ]
+            ],
+            "Secret": {
+                "Text": "Enter the hallway",
+                "Target": "Secret Hallway",
+                "Scene": "Location"
+            },
+            "SecretPassage": false
         },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+        "West": {
+            "Body": "You are facing the west wall of the room. There is an overly conspicuous lever on the wall.",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Text": "Look south",
+                    "Target": "South",
+                    "Scene": "Location"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Look east",
+                    "Target": "East",
+                    "Scene": "East"
+                },
+                {
+                    "Text": "Look north",
+                    "Target": "North",
+                    "Scene": "North"
+                }
+            ],
+            "LeverChoice": {
+                "Text": "Pull lever",
+                "Target": "LeverEvent",
+                "Scene": "LeverEvent"
+            },
+            "LeverPulled": false
+        },
+        "South": {
+            "Body": "You are facing the south wall of the room.",
+            "Choices": [
+                {
+                    "Text": "Look east",
+                    "Target": "East",
+                    "Scene": "East"
+                },
+                {
+                    "Text": "Look north",
+                    "Target": "North",
+                    "Scene": "North"
+                },
+                {
+                    "Text": "Look west",
+                    "Target": "West",
+                    "Scene": "West"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "East": {
+            "Body": "You are facing the east wall of the room.",
+            "Open": "A freshly dug tunnel lies beyond an open gate.",
+            "Closed": "A gate stands in front of you.",
+            "Choices": [
+                {
+                    "Text": "Look north",
+                    "Target": "North",
+                    "Scene": "North"
+                },
+                {
+                    "Text": "Look west",
+                    "Target": "West",
+                    "Scene": "West"
+                },
+                {
+                    "Text": "Look south",
+                    "Target": "South",
+                    "Scene": "Location"
+                }
+            ],
+            "Rude": {
+                "Text": "Open the gate",
+                "Target": "GateEvent",
+                "Scene": "GateEvent"
+            },
+            "Polite": {
+                "Text": "Please open the gate",
+                "Target": "GateEvent",
+                "Scene": "GateEvent"
+            },
+            "Tunnel": {
+                "Text": "Enter the tunnel",
+                "Target": "Tunnel",
+                "Scene": "Location"
+            },
+            "HasBook": false,
+            "GateOpen": false
+        },
+        "Secret Hallway": {
+            "Body": "A corridor branches off in two directions. A southern passage leads to the room you woke up in.",
+            "Choices": [
+                {
+                    "Text": "Go left",
+                    "Target": "Nook",
+                    "Scene": "Nook"
+                },
+                {
+                    "Text": "Go right",
+                    "Target": "Exit",
+                    "Scene": "Exit"
+                },
+                {
+                    "Text": "Go south",
+                    "Target": "South",
+                    "Scene": "Location"
+                }
+            ]
+        },
+        "Nook": {
+            "Body": "There's a small reading nook here with a chair and table.",
+            "BookLook": "Resting on the chair is a book of manners.",
+            "BookGet": "You got book of manners.",
+            "Choices": [
+                {
+                    "Text": "Go back",
+                    "Target": "Secret Hallway",
+                    "Scene": "Location"
+                }
+            ],
+            "BookChoice": {
+                "Text": "Get book",
+                "Target": "Nook",
+                "Scene": "BookGet"
+            }
+        },
+        "Exit": {
+            "Body": "A door with a exit sign over it lies at this end of the corridor.",
+            "CatHangry": "An ill-tempered cat seems to be guarding it.",
+            "Choices": [
+                {
+                    "Text": "Go back",
+                    "Target": "Secret Hallway",
+                    "Scene": "Location"
+                }
+            ],
+            "PetCat": {
+                "Text": "Pet cat",
+                "Target": "CatEvent",
+                "Scene": "CatEvent"
+            },
+            "FeedCat": {
+                "Text": "Feed cat",
+                "Target": "CatEvent",
+                "Scene": "CatEvent"
+            },
+            "Leave": {
+                "Text": "Leave",
+                "Target": "End",
+                "Scene": "Location"
+            },
+            "CatFed": false,
+            "HasTuna": false
+        },
+        "Tunnel": {
+            "Body": "The entrance to the tunnel lies to your west. The rest of it stretches on to the north.",
+            "Choices": [
+                {
+                    "Text": "Go north",
+                    "Target": "DeadEnd",
+                    "Scene": "DeadEnd"
+                },
+                {
+                    "Text": "Go west",
+                    "Target": "West",
+                    "Scene": "West"
+                }
+            ]
+        },
+        "LeverEvent": {
+            "Body": "You pull down the lever. You hear a loud sliding noise off to the right.",
+            "Choices": [
+                {
+                    "Text": "Okay",
+                    "Target": "West",
+                    "Scene": "West"
+                }
+            ]
+        },
+        "GateEvent": {
+            "RudeBody": "Not with that attitude.",
+            "PoliteBody": "The gate opens. See how easy that was?",
+            "GoBack": {
+                "Text": "Return",
+                "Target": "East",
+                "Scene": "East"
+            }
+        },
+        "CatEvent": {
+            "CatBad": "The cat hisses at you and makes you feel bad :(",
+            "CatGood": "The cat absorbs the tuna and slinks away.",
+            "GoBack": {
+                "Text": "Return",
+                "Target": "Exit",
+                "Scene": "Exit"
+            }
         }
     }
 }
