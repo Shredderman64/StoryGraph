@@ -155,6 +155,9 @@
                 "Scene": "BookGet"
             }
         },
+        "DeadEnd": {
+
+        },
         "Exit": {
             "Body": "A door with a exit sign over it lies at this end of the corridor.",
             "CatHangry": "An ill-tempered cat seems to be guarding it.",
