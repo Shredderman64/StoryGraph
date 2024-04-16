@@ -14,6 +14,8 @@ function factory(type) {
         sceneClass = Nook;
     } else if (type === "Exit") {
         sceneClass = Exit;
+    } else if (type === "DeadEnd") {
+        sceneClass = DeadEnd;
     } else if (type === "LeverEvent") {
         sceneClass = LeverEvent;
     } else if (type === "GateEvent") {
@@ -22,6 +24,8 @@ function factory(type) {
         sceneClass = CatEvent;
     } else if (type === "BookGet") {
         sceneClass = BookGet;
+    } else if (type === "TunaGet") {
+        sceneClass = TunaGet;
     }
     return sceneClass;
 }
@@ -53,7 +57,7 @@ class Location extends Scene {
                 // TODO: add a useful second argument to addChoice so that the current code of handleChoice below works
             }
         } else {
-            this.engine.addChoice("The end.")
+            this.engine.addChoice("Thanks for playing.")
         }
     }
 
@@ -131,6 +135,16 @@ class Exit extends Location {
     }
 }
 
+class DeadEnd extends Location {
+    update(key) {
+        let locationData = this.engine.storyData["Locations"][key];
+        if (!this.engine.storyData["Locations"]["Exit"]["HasTuna"]) {
+            this.engine.show(locationData["TunaLook"]);
+            this.engine.addChoice(locationData["TunaChoice"]["Text"], locationData["TunaChoice"]);
+        }
+    }
+}
+
 class LeverEvent extends Location {
     update() {
         this.engine.storyData["Locations"]["West"]["LeverPulled"] = true;
@@ -174,6 +188,19 @@ class BookGet extends Nook {
 
     update() {
         this.engine.storyData["Locations"]["East"]["HasBook"] = true;
+    }
+}
+
+class TunaGet extends DeadEnd {
+    create(key) {
+        let locationData = this.engine.storyData["Locations"][key];
+        this.engine.show(locationData["TunaGet"]);
+        this.engine.show(locationData["Body"]);
+        this.engine.addChoice(locationData["Choices"][0]["Text"], locationData["Choices"][0]);
+    }
+
+    update() {
+        this.engine.storyData["Locations"]["Exit"]["HasTuna"] = true;
     }
 }
 

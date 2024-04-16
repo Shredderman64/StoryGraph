@@ -155,9 +155,6 @@
                 "Scene": "BookGet"
             }
         },
-        "DeadEnd": {
-
-        },
         "Exit": {
             "Body": "A door with a exit sign over it lies at this end of the corridor.",
             "CatHangry": "An ill-tempered cat seems to be guarding it.",
@@ -200,6 +197,26 @@
                     "Scene": "West"
                 }
             ]
+        },
+        "DeadEnd": {
+            "Body": "The tunnels ends in a brick wall. The words 'soz 2 lazy 2 add room' are hastily painted over it.",
+            "TunaLook": "A conveniently open can of tuna sits in front of you.",
+            "TunaGet": "You got open can of tuna.",
+            "Choices": [
+                {
+                    "Text": "Go back",
+                    "Target": "Tunnel",
+                    "Scene": "Location"
+                }
+            ],
+            "TunaChoice": {
+                "Text": "Get tuna",
+                "Target": "DeadEnd",
+                "Scene": "TunaGet"
+            }
+        },
+        "End": {
+            "Body": "You walk through the door and are greeted by the familiar scene of your dorm room. Turns out it was just a prank pulled by your roommates."
         },
         "LeverEvent": {
             "Body": "You pull down the lever. You hear a loud sliding noise off to the right.",
